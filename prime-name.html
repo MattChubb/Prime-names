@@ -11,15 +11,20 @@
   <script type="text/javascript">
 	function validate(name) {
 	  if (! name.match(/^[A-z]*$/)) {
-		alert("Invalid name");
+		return false;
 	  }
+	  
+	  return true;
 	}
 	
 	function numberify(name) {
 		var totalScore = 0;
 	
 		name = name.replace(/\s*/g, "");
-	    validate(name);
+	    if (! validate(name)) {
+			alert("Invalid name (" + name + "), only A-Z accepted.");
+			throw "Invalid name (" + name + "), only A-Z accepted.";
+		};
 		
 		name.toLowerCase()
 			.split('')
@@ -31,7 +36,26 @@
 	}
 	
 	function letterToNumber(letter) {
-		return letter.charCodeAt(0) - 96;
+		var score = letter.charCodeAt(0) - 96;
+		if (1 < score < 27) {
+			return score;
+		}
+		
+		throw "Invalid letter encountered (" + letter + "): Only A-Z accepted";
+	}
+	
+	function checkPrime(number) {
+		for(var it = 2; it <= Math.sqrt(number); it++) {
+			if(number % it === 0) {
+				return false;
+			}
+		}
+		
+		return number > 1;
+	}
+	
+	function notifyMessage(message) {
+		
 	}
 	
   </script>
@@ -43,6 +67,7 @@
   <h1>Prime name calculator</h1>
   <input id="name" type="text" pattern=/^[A-z]*$/ />
   <button id="go" type="button">Check</button>
+  <div id="message" />
   
 
   <script type="text/javascript">
@@ -50,9 +75,12 @@
 		var name = $("#name").val();
 		var score = numberify(name);
 	  
-	  
-		console.log(name);
-		console.log(score);
+		if (checkPrime(score)) {
+			console.log( name + " is prime!");
+		} else {
+			console.log( name + " is not prime!");
+		}
+		
 	});
   </script>
 </body>
