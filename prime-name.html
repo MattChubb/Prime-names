@@ -22,7 +22,7 @@
 	
 		name = name.replace(/\s*/g, "");
 	    if (! validate(name)) {
-			alert("Invalid name (" + name + "), only A-Z accepted.");
+			notifyMessage("Invalid name (" + name + "), only A-Z accepted.");
 			throw "Invalid name (" + name + "), only A-Z accepted.";
 		};
 		
@@ -55,7 +55,7 @@
 	}
 	
 	function notifyMessage(message) {
-		
+		$("#message").text(message);
 	}
 	
   </script>
@@ -76,9 +76,9 @@
 		var score = numberify(name);
 	  
 		if (checkPrime(score)) {
-			console.log( name + " is prime!");
+			notifyMessage( name + " is prime!");
 		} else {
-			console.log( name + " is not prime!");
+			notifyMessage( name + " is not prime!");
 		}
 		
 	});
