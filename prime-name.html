@@ -70,6 +70,17 @@
 		$("#score").text(score);
 	}
 	
+	function checkName() {
+		var name = $("#name").val();
+		var score = numberify(name);
+	  
+		setScore(score);
+		if (checkPrime(score)) {
+			successMessage( name + " is prime!");
+		} else {
+			failMessage( name + " is not prime!");
+		}
+	}
   </script>
 </head>
 
@@ -101,15 +112,11 @@
   
 
   <script type="text/javascript">
-	$("#go").on("click", function(){
-		var name = $("#name").val();
-		var score = numberify(name);
-	  
-		setScore(score);
-		if (checkPrime(score)) {
-			successMessage( name + " is prime!");
-		} else {
-			failMessage( name + " is not prime!");
+	$("#go").on("click", checkName);
+	$("#name").keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if (keycode ==13) {
+			checkName();
 		}
 	});
   </script>
