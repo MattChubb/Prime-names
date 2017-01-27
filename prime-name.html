@@ -58,11 +58,12 @@
 	}
 	
 	function successMessage(message) {
-		$("#message-block").attr("class", "row bg-success");
+		//$("#message-block").attr("class", "row bg-success");
+		$("#message-block").css("background-color", "#00ffff");
 		$("#message").text(message);
 	}
 	function failMessage(message) {
-		$("#message-block").attr("class", "row bg-danger");
+		$("#message-block").css("background-color", "#ff3232");
 		$("#message").text(message);
 	}
 	function setScore(score) {
@@ -88,9 +89,9 @@
 			</span>
 		</div>
 		
-		<div id="message-block" class="row hidden">
+		<div id="message-block" class="row">
 			<div class="col-xs-11 text-center">
-				<div id="message" class="panel-body" /> </div> 
+				<strong id="message" class="panel-body" /> </strong>
 			</div>
 			<div class="col-xs-1 pull-right text-center">
 				<strong id="score" class="panel-body">  </strong>
